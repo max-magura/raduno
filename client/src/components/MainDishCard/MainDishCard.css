@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.center {
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+}
+.item-card {
+  width: 450px;
+  height: 450px;
+  border: solid 1px black;
+}
+
+.item-card-header {
+  position: relative;
+  height: 60px;
+  background-color: #455d7a !important;
+  color: #fff;
+}
+
+.quantity-needed {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  float: right;
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+.description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: 20px;
+  font-size: 30px;
+}
+
+.display-item-cards {
+  margin-top: 5em;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}

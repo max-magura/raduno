@@ -16,3 +16,9 @@
 	background-color: #632323;
   border-color: #632323;
 }
+
+.modalBody {
+  padding: unset;
+  align-items: unset;
+  text-align: unset;
+}

@@ -12,8 +12,8 @@ function CreateEvent (props) {
       <Modal.Title>Create Your Event</Modal.Title>
     </Modal.Header>
   
-    <Modal.Body className="modalBody">
-        <Form>
+    <Modal.Body>
+        <Form className="modalBody">
 
         <Form.Group>
           <Form.Label>Event Name</Form.Label>

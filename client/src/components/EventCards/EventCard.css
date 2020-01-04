@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #e3e3e3;
+}
+
+
+.upcomingEventCard {
+    background-color: #455d7a !important;
+    color: #e3e3e3;
+    text-align: center;
+}
+
+.pastEventCard {
+    background-color: #455d7a !important;
+    color: #e3e3e3;
+    text-align: center;
+}
+
+.card {
+  background-color: #f95959;  
+  margin: 5px;
+  border: 1px solid #e3e3e3;
+}

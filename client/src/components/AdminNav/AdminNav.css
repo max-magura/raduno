@@ -1,0 +1,21 @@
+
+.align-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 10px;
+  margin-right: 10px
+}
+
+.admin-navbar {
+  position: relative;
+}
+
+
+.color-adminNav {
+  background-color: #223142;
+}
+
+.btn-primary2 {
+  background-color: #f95959;
+}

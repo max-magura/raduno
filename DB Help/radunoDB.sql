@@ -4,11 +4,11 @@ USE radunoDB;
 
 CREATE TABLE Users (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(200) NOT NULL,
-    password VARCHAR(200) NOT NULL,
-    firstName VARCHAR(150) NOT NULL,
-    lastName VARCHAR(150) NOT NULL,
-    email VARCHAR(255) NOT NULL
+  username VARCHAR(200) NOT NULL,
+  password VARCHAR(200) NOT NULL,
+  firstName VARCHAR(150) NOT NULL,
+  lastName VARCHAR(150) NOT NULL,
+  email VARCHAR(255) NOT NULL
 );
 
 INSERT INTO Users (username, password, firstName, lastName, email) values ('Agraves', 'austin', 'Austin', 'Graves', 'austingraves@email.com'),
@@ -28,7 +28,7 @@ CREATE TABLE Events (
 	state VARCHAR(255) NOT NULL,
 	zipCode VARCHAR(255) NOT NULL,
 	date VARCHAR(200) NOT NULL,
-    time VARCHAR(50) NOT NULL,
+  time VARCHAR(50) NOT NULL,
 	numberOfMains INT NOT NULL,
 	numberOfSides INT NOT NULL,
 	numberOfDesserts INT NOT NULL 
@@ -43,11 +43,11 @@ values
 
 CREATE TABLE RSVP (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-    event_id INT NOT NULL,
-    nameOfAttendee VARCHAR(200) NOT NULL,
-    numberOfGuests INT NOT NULL,
-    foodName VARCHAR(255) NOT NULL,
-    category VARCHAR(200) NOT NULL
+  event_id INT NOT NULL,
+  nameOfAttendee VARCHAR(200) NOT NULL,
+  numberOfGuests INT NOT NULL,
+  foodName VARCHAR(255) NOT NULL,
+  category VARCHAR(200) NOT NULL
 );
 
 INSERT INTO RSVP (event_id, nameOfAttendee, numberOfGuests, foodName, category) values 

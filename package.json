@@ -1,0 +1,22 @@
+{
+  "name": "raduno",
+  "version": "1.0.0",
+  "description": "Raduno - Event Planning Application",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "cd client/ && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/max-magura/raduno.git"
+  },
+  "author": "Max Magura, Austin Graves, Joel Buentello, Scott Nelson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/max-magura/raduno/issues"
+  },
+  "homepage": "https://github.com/max-magura/raduno#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

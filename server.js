@@ -2,7 +2,7 @@
 // 1.) run npm install. Let that finish
 // 2.) Then in your console type 'npm run client-install'.
 // That will cd into the client folder and run npm install for you.
-
+const db = require('./DB Help/connection');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
@@ -13,12 +13,20 @@ app.get('/', (req, res) => {
   res.send({Message: 'This is the home route'});
 })
 
-app.get('/login', (req, res) => {
-  res.send({Login: "Route Hit"});
+app.post('/login', (req, res) => {
+  var username = req.body.username;
+  var password = req.body.password;
+  console.log(`Username: ${username}`);
+  console.log(`Password: ${password}`);
+  var data = {
+    username: username,
+    password: password
+  }
+  res.send(data);
 });
 
-app.get('/signUp', (req, res) => {
-  res.send({SignUp: 'Route Hit'});
+app.post('/signUp', (req, res) => {
+  console.log(req.body);
 });
 
 app.get('/myEvents', (req, res) => {
@@ -33,7 +41,7 @@ app.get('/event/:id', (req, res) => {
   res.send({Event: `Loaded ${req.params.id} Event`});
 });
 
-app.get('/event/rsvp', (req, res) => {
+app.get('/event/rsvp/:id', (req, res) => {
   res.send({RSVP: "Route Hit"});
 });
 

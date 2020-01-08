@@ -52,15 +52,6 @@ class AdminNav extends React.Component {
       console.log(this.state);
   }  
 
-  // validateZipCode(str) {
-  //   isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
-  //   if (isValidZip.test(str)) {
-  //     return true;}
-  //   else {
-  //     return false;
-  //   };
-  // };
-
   handleCreateEventFormSubmit = event =>{
     event.preventDefault();
 
@@ -83,23 +74,24 @@ class AdminNav extends React.Component {
     this.handleCloseCreateEvent();
   }
 
+  getZipCode = (str) => {
+    var regex = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+    if(regex.test(this.state.eventLocationZipCode)) {
+    }
+    else {
+      alert("Please enter a valid zip code.");
+      this.setState({eventLocationZipCode: ""});
+    }
+  }
 
   render() {
-        
-    // var isZipCodeEnabled = false
-
-    // if (this.state.eventLocationZipCode = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test("90210")) {
-    //   isZipCodeEnabled = true
-    // }
 
     return (
     <>
-    <Navbar fixed="top" className="navbar color-adminNav admin-navbar" expand="lg" variant="light">
-      <div className="myEvents">My Events</div>
-        <div className="containerButton">
-          <Button className="createEvent" onClick={this.handleShowCreateEvent}>Create Event</Button>
-          <Button className="logoutButton" type="submit">Logout</Button>
-        </div>
+    <Navbar className="navbar color-adminNav admin-navbar" expand="lg" variant="light">
+      <Navbar.Brand href="#">My Events</Navbar.Brand>
+      <Button className="createEvent" onClick={this.handleShowCreateEvent}>Create Event</Button>
+      <Button className="align-right btn-primary2" type="submit">Logout</Button>
     </Navbar>
 
     <Modal show={this.state.showCreateEvent} onHide={this.handleCloseCreateEvent}>
@@ -199,7 +191,7 @@ class AdminNav extends React.Component {
 
         <Form.Group>
           <Form.Label>Location Zip Code</Form.Label>
-          <Form.Control type="text" name="eventLocationZipCode" value={this.state.eventLocationZipCode} onChange={this.handleInputChange} placeholder="37212"/>
+          <Form.Control type="text" name="eventLocationZipCode" value={this.state.eventLocationZipCode} onChange={this.handleInputChange} placeholder="37212" onBlur={this.getZipCode}/>
         </Form.Group>
 
         <Form.Group>

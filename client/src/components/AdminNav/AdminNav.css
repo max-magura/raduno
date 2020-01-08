@@ -1,21 +1,32 @@
 
-.align-right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-top: 10px;
-  margin-right: 10px
-}
-
-.admin-navbar {
-  position: relative;
-}
-
-
 .color-adminNav {
   background-color: #223142;
+  margin-top: 0px;
 }
 
-.btn-primary2 {
+.logoutButton {
   background-color: #f95959;
+}
+
+.containerButton {
+  position: absolute;
+  right: 0px;
+  margin-right: 10px;
+  margin-top: 0px;
+}
+
+.myEvents {
+  font-size: 25px;
+  color: white;
+}
+
+.createEvent {
+  /* margin-top: px; */
+  margin-right: 5px;
+  background:#f95959;
+}
+
+.logoutButton {
+  /* margin-top: 10px; */
+  margin-right: 5px;
 }

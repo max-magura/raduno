@@ -1,52 +1,46 @@
 
-.eventButton {
+.eventButtonInfo {
   position: absolute;
+  float:right;
   top: 0;
   right: 0;
   margin-top: 10px;
-  margin-right: 10px;
+  margin-right: 5px;
   background-color:#f95959;
+  
 }
-.eventButton2 {
+.eventButtonRSVP {
   position: absolute;
+  float: left;
   top: 0;
-  right: 100px;
+  right: 150px;
   margin-top: 10px;
-  margin-right: 10px;
+  margin-right: 5px;
   background-color: #f95959;
 }
 
 .userName {
-  position: fixed;
+  position: relative;
+  float: right;
   top: 0;
   right: 0px;
   left: 0px;
-  margin-top: 30px;
-  margin-left: 16px;
-  padding-top: 5px;
+  margin-top: 0px;
+  margin-left:0px;
+  padding-top: 0px;
   color: white;
-  
 }
 .colorEvent {
   background-color: #233142;
+  padding: 0px;
 }
 
-.containerMain {
-  color: White;
-}
-
-.colorEvents {
-  color: white;
-}
-
-.containerCount{
+ .containerCount{
   position: fixed;
-  align-items: center;
-  /* border: 20px solid white; */
   width: 300px;
   top: 0;
-  right: 250px;
-  margin-top: 15px;
+  right: 300px;
+  margin-top: 20px;
   margin-right: 30px;
 }
 
@@ -60,4 +54,13 @@
   position: relative;
   float: right;
   color: white;
+}
+
+.eventsTitle {
+  position: relative;
+  color: white;
+  font-size: 25px;
+  padding: 0px;
+  /* margin: 0px; */
+
 }

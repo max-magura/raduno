@@ -8,9 +8,9 @@ import StaticModal from './pages/StaticModal/StaticModal'
 function App() {
   return (
     <div>
-      {/* <ViewEvents /> */}
+      <ViewEvents />
       {/* <LoginPage /> */}
-      <StaticModal />
+      {/* <StaticModal /> */}
     </div>
   );
 }

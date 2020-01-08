@@ -94,10 +94,12 @@ class AdminNav extends React.Component {
 
     return (
     <>
-    <Navbar className="navbar color-adminNav admin-navbar" expand="lg" variant="light">
-      <Navbar.Brand href="#">My Events</Navbar.Brand>
-      <Button className="createEvent" onClick={this.handleShowCreateEvent}>Create Event</Button>
-      <Button className="align-right btn-primary2" type="submit">Logout</Button>
+    <Navbar fixed="top" className="navbar color-adminNav admin-navbar" expand="lg" variant="light">
+      <div className="myEvents">My Events</div>
+        <div className="containerButton">
+          <Button className="createEvent" onClick={this.handleShowCreateEvent}>Create Event</Button>
+          <Button className="logoutButton" type="submit">Logout</Button>
+        </div>
     </Navbar>
 
     <Modal show={this.state.showCreateEvent} onHide={this.handleCloseCreateEvent}>

@@ -69,9 +69,7 @@ class EventNav extends React.Component {
   render() {
     return (
     <>
-    <div className="containerMain">
-    <Navbar expand="lg" className="colorEvent">
-      <Navbar.Brand className="colorEvents" href="#">Events</Navbar.Brand>
+    <Navbar fixed="top" expand="lg" className="colorEvent buttonContainer">
         <div className="containerCount">
           <div className="invitedNum">
             Invited:
@@ -81,14 +79,16 @@ class EventNav extends React.Component {
             </div>
         </div>
           <div class="containerBtn">
-            <Button className="eventButton" onClick={this.handleShowEventInfo}>Event Info</Button>
-              <div className="userName">
-                Hosted By: Austin Graves
+            <Button className="eventButtonInfo" onClick={this.handleShowEventInfo}>Event Info</Button>
+              <div className="eventsTitle">
+                Events
               </div>
-            <Button className="eventButton2" onClick={this.handleShowRsvpForm}>RSVP Here</Button>
+                <div className="userName">
+                  Hosted By: Austin Graves
+                </div>
+            <Button className="eventButtonRSVP" onClick={this.handleShowRsvpForm}>RSVP Here</Button>
           </div>
       </Navbar>
-    </div>
 
     <Modal show={this.state.showRsvpForm} onHide={this.handleCloseRsvpForm}>
     <Modal.Header className="modalHeader" closeButton>

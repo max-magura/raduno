@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar,Modal, Button, Form, Card, ListGroup} from 'react-bootstrap';
 import "./EventNav.css";
 import './styleModal.css';
+import Axios from "axios";
 
 
 class EventNav extends React.Component {
@@ -49,21 +50,28 @@ class EventNav extends React.Component {
   handleRsvpFormSubmit = event =>{
     event.preventDefault();
 
-    // API.createRsvp({
-    //     rsvpName: this.state.rsvpName,
-    //     rsvpNumberInParty: this.state.rsvpNumberInParty,
-    //     rsvpTypeofDish: this.state.rsvpTypeofDish,
-    //     rsvpNameofDish: this.state.rsvpNameofDish
-    //   })
-    //     .then((res) => {console.log(res.data)})
-    //     .catch(err => console.log(err));
+    Axios.post('/event/rsvp/:id', {  
+      rsvpName: this.state.rsvpName,
+      rsvpNumberInParty: this.state.rsvpNumberInParty,
+      rsvpTypeofDish: this.state.rsvpTypeofDish,
+      rsvpNameofDish: this.state.rsvpNameofDish
+    })
+    .then(function(result) {
+      console.log(result);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
     this.handleCloseRsvpForm();
+    
   }
 
   render() {
     return (
     <>
-    <Navbar fixed="top" expand="lg" className="colorEvent buttonContainer">
+    <div className="containerMain">
+    <Navbar expand="lg" className="colorEvent">
+      <Navbar.Brand className="colorEvents" href="#">Events</Navbar.Brand>
         <div className="containerCount">
           <div className="invitedNum">
             Invited:
@@ -73,16 +81,14 @@ class EventNav extends React.Component {
             </div>
         </div>
           <div class="containerBtn">
-            <Button className="eventButtonInfo" onClick={this.handleShowEventInfo}>Event Info</Button>
-              <div className="eventsTitle">
-                Events
+            <Button className="eventButton" onClick={this.handleShowEventInfo}>Event Info</Button>
+              <div className="userName">
+                Hosted By: Austin Graves
               </div>
-                <div className="userName">
-                  Hosted By: Austin Graves
-                </div>
-            <Button className="eventButtonRSVP" onClick={this.handleShowRsvpForm}>RSVP Here</Button>
+            <Button className="eventButton2" onClick={this.handleShowRsvpForm}>RSVP Here</Button>
           </div>
       </Navbar>
+    </div>
 
     <Modal show={this.state.showRsvpForm} onHide={this.handleCloseRsvpForm}>
     <Modal.Header className="modalHeader" closeButton>

@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, Modal, Button, Form} from 'react-bootstrap';
 import "./AdminNav.css";
 import './styleModal.css';
+import Axios from "axios";
 
 class AdminNav extends React.Component {
   state = {
@@ -55,22 +56,26 @@ class AdminNav extends React.Component {
   handleCreateEventFormSubmit = event =>{
     event.preventDefault();
 
-    // API.createEvent({
-    //     eventName: this.state.eventName,
-    //     eventDescription: this.state.eventDescription,
-    //     eventDate: this.state.eventDate,
-    //     eventTime: this.state.eventTime,
-    //     eventLocationStreet: this.state.eventLocationStreet,
-    //     eventLocationCity: this.state.eventLocationCity,
-    //     eventLocationState: this.state.eventLocationState,
-    //     eventLocationZipCode: this.state.eventLocationZipCode,
-    //     eventMainDishesNeeded: this.state.eventMainDishesNeeded,
-    //     eventSideDishesNeeded: this.state.eventSideDishesNeeded,
-    //     eventDessertsNeeded: this.state.eventDessertsNeeded,
-    //     eventNumberInvited: this.state.eventNumberInvited
-    //   })
-    //     .then((res) => {console.log(res.data)})
-    //     .catch(err => console.log(err));
+    Axios.post('/event/create', {  
+      eventName: this.state.eventName,
+      eventDescription: this.state.eventDescription,
+      eventDate: this.state.eventDate,
+      eventTime: this.state.eventTime,
+      eventLocationStreet: this.state.eventLocationStreet,
+      eventLocationCity: this.state.eventLocationCity,
+      eventLocationState: this.state.eventLocationState,
+      eventLocationZipCode: this.state.eventLocationZipCode,
+      eventMainDishesNeeded: this.state.eventMainDishesNeeded,
+      eventSideDishesNeeded: this.state.eventSideDishesNeeded,
+      eventDessertsNeeded: this.state.eventDessertsNeeded,
+      eventNumberInvited: this.state.eventNumberInvited
+    })
+    .then(function(result) {
+      console.log(result);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
     this.handleCloseCreateEvent();
   }
 

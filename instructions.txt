@@ -1,0 +1,7 @@
+Run npm install for server and for client folder
+
+VS Code terminal - then do node server
+
+Create another shell, with the plus button. 
+
+cd into client folder then do npm start to start the react development server.

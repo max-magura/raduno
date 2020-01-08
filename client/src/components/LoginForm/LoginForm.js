@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './LoginForm.css';
+import axios from 'axios';
 
 class LoginForm extends Component {
 
@@ -11,16 +12,48 @@ class LoginForm extends Component {
     lastName: ''
   }
 
+  performSignIn = (username, password) => {
+    var data = {
+      username: username,
+      password: password
+    }
+    axios.post('/login', data).then(results => {
+      this.setState({
+        username: results.data.username,
+        password: results.data.password
+      })
+    });
+  }
+
+  performSignUp = (username, password, email) => {
+    var data = {
+      username: username,
+      password: password,
+      email: email
+    }
+    axios.post('/signUp', data).then(results => {
+      this.setState({
+        username: results.data.username,
+        password: results.data.password,
+        email: results.data.email
+      })
+    });
+  }
+
+
+
   signInBtnClicked = (e) => {
     e.preventDefault();
     // console.log('Sign In');
     var usernameInput = document.getElementById('username').value;
     var passwordInput = document.getElementById('password').value;
     
-    this.setState({
-      username: usernameInput,
-      password: passwordInput
-    })
+    this.performSignIn(usernameInput, passwordInput);
+
+    // this.setState({
+    //   username: usernameInput,
+    //   password: passwordInput
+    // })
   }
 
   signUpBtnClicked = (e) => {
@@ -30,6 +63,8 @@ class LoginForm extends Component {
     var usernameInput = document.querySelector('#create-username').value;
     var passwordInput = document.querySelector('#create-password').value;
 
+
+    this.performSignUp(usernameInput, passwordInput, emailInput);
     this.setState({
       email: emailInput,
       username: usernameInput,

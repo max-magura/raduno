@@ -15,7 +15,7 @@ class AdminNav extends React.Component {
     eventLocationStreet: "",
     eventLocationCity: "",
     eventLocationState: "",
-    eventLocationZipCode: "",
+    eventLocationZipCode: 0,
     eventMainDishesNeeded: 0,
     eventSideDishesNeeded: 0,
     eventDessertsNeeded: 0,

@@ -1,88 +1,90 @@
-module.exports = function(sequelize, DataTypes) {
-  var Event = sequelize.define("Event", {
+const db = require('../connection');
+const Sequelize = require('sequelize');
+
+var Event = db.define('Event', {
     id: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     eventName: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
     eventDescription: {
-      type: DataTypes.TEXT,
+      type: Sequelize.TEXT,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
     eventDate: {
-      type: DataTypes.DATEONLY,
+      type: Sequelize.DATEONLY,
       allowNull: false
     },
     eventTime: {
-      type: DataTypes.TIME,
+      type: Sequelize.TIME,
       allowNull: false
     },
     eventLocationStreet: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
     eventLocationCity: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
     eventLocationState: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
     eventLocationZipCode: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
     eventMainDishesNeeded: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
     eventSideDishesNeeded: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
     eventDessertsNeeded: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
     eventNumberInvited: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
       allowNull: false,
       validate: {
         len: [1]
       }
     }
-  });
-  return Event;
-};
+});
+
+module.exports = Event;

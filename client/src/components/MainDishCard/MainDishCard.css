@@ -11,13 +11,15 @@
 .item-card {
   width: 450px;
   height: 450px;
-  border: solid 1px black;
+  border: solid 1px #455d7a; 
+  border-radius: 20px;
+  box-shadow: 10px 10px #455d7a83;
 }
 
 .item-card-header {
   position: relative;
   height: 60px;
-  background-color: #455d7a !important;
+  background-color: #455d7a ;
   color: #fff;
 }
 
@@ -26,8 +28,9 @@
   bottom: 0;
   right: 0;
   float: right;
-  margin-right: 20px;
+  margin: 20px;
   font-size: 20px;
+  
 }
 
 .description {
@@ -43,3 +46,4 @@
   display: grid;
   grid-template-columns: auto auto auto;
 }
+

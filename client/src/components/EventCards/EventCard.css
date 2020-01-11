@@ -21,7 +21,7 @@ body {
 }
 
 .card {
-  background-color: #f95959;  
-  margin: 5px;
-  border: 1px solid #e3e3e3;
+  background-color: #e3e3e3;  
+  margin: 10px;
+  border: 1px solid #455d7a;
 }

@@ -310,6 +310,16 @@ footer a {
 }
 
 .size {
+	margin-top: 0;
 	padding-top: 6px;
 	padding-bottom: 6px;
+}
+
+.signUpForm {
+	padding-bottom: 2em;
+}
+
+.signUpTitle {
+	font-size: 36px;
+	margin-top: 20px;
 }

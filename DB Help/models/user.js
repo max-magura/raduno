@@ -31,6 +31,8 @@ var Users = db.define('User', {
   timestamps: false
 });
 
+Users.sync();
+
 module.exports = Users;
 
 

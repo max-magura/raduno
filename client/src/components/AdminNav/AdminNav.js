@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, Modal, Button, Form} from 'react-bootstrap';
 import "./AdminNav.css";
 import './styleModal.css';
-import Axios from "axios";
+import axios from "axios";
 
 class AdminNav extends React.Component {
   state = {

@@ -78,28 +78,90 @@ app.post('/signUp', (req, res) => {
   });
   
 
-app.get('/myEvents', (req, res) => {
-  res.send({MyEvents: 'Route Hit'});
-});
-
-app.get('/event/create', (req, res) => {
-  res.send({CreateEvent: 'Route Hit'});
-});
-
-app.get('/event/:id', (req, res) => {
-  res.send({Event: `Loaded ${req.params.id} Event`});
-});
-
-app.get('/event/rsvp/:id', (req, res) => {
-  res.send({RSVP: "Route Hit"});
-});
-
-app.get('/event/info/:id', (req, res) => {
-  res.send({EventInfo: `Route Hit. Event Info Id: ${req.params.id}`});
-});
-
-
-
-app.listen(port, () => {
-  console.log(`Server Started On Port: ${port}`)
-})
+  app.get('/myEvents/:id', (req, res) => {
+    var upcomingEvents = [];
+    var passedEvents = [];
+    var databaseResults = [];
+    models.Event.findAll({
+      where: {
+       user_id: req.params.id 
+      },
+      order: [
+        ['eventDate', 'ASC']
+      ]
+    }).then(results => {
+      sortTheEvents(results, upcomingEvents, passedEvents);
+      res.send({
+        Success: true,
+        UpcomingEvents: upcomingEvents,
+        PassedEvents: passedEvents
+      });
+    })
+  });
+  
+  app.post('/event/create', (req, res) => {
+    models.Event.create(req.body).then(results => {
+      console.log(results);
+      res.send(results);
+    })
+  });
+  
+  app.get('/event/:id', (req, res) => {
+    var eventInfo = [];
+    var rsvpInfo = [];
+    models.Event.findAll({
+      where: {
+        id: req.params.id
+      }
+    }).then(eventResults => {
+      eventInfo = eventResults;
+      models.RSVP.findAll({
+        where: {
+          event_id: req.params.id
+        }
+      }).then(rsvpResults => {
+        rsvpInfo = rsvpResults;
+        res.send({
+          Success: true,
+          EventInfo: eventInfo,
+          RsvpInfo: rsvpInfo
+        })
+      })
+    });
+  });
+  
+  app.post('/event/rsvp/:id', (req, res) => {
+    console.log(req.body);
+    models.RSVP.create(req.body).then(results => console.log(results))
+    res.send(req.body);
+  });
+  
+  // app.get('/event/info/:id', (req, res) => {
+  //   res.send({EventInfo: `Route Hit. Event Info Id: ${req.params.id}`});
+  // });
+  
+  app.get('/redirect', (req, res) => {
+    res.send({Message: 'You Dont Have Permission To View That Page'});
+  })
+  
+  app.listen(port, () => {
+    console.log(`Server Started On Port: ${port}`)
+  });
+  
+  function sortTheEvents(data, upcomingEvents, passedEvents) {
+    for (var i = 0; i < data.length; i++) {
+      var currentDate = data[i].eventDate;
+      var now = moment().startOf('day');
+      var daysAway = moment(currentDate).diff(now, 'days');
+      // console.log(daysAway);
+      //TODO: Add the days Away to the piece.
+      if (daysAway >= 0) {
+        data[i].dataValues.DaysAway = daysAway;
+        upcomingEvents.push(data[i]);
+        // console.log(data[i]);
+      } else {
+        data[i].dataValues.DaysAway = daysAway;
+        passedEvents.push(data[i]);
+      }
+    }
+  }

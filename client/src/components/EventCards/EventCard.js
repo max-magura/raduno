@@ -22,9 +22,8 @@ class EventCard extends React.Component{
                 console.log(results);
             });
         }
-      
-      
     }
+
     render() {
     return(
     <div className="container">
@@ -63,8 +62,10 @@ class EventCard extends React.Component{
     <Card.Title>Past Events</Card.Title>
   {this.state.passedEvents.map((event, index) => (
     <Card key={index} className="card">
-    <Card.Body className="cardBody">{event.eventName}</Card.Body>
-    <small>Days Away: {event.DaysAway}</small>
+    <Card.Body className="item-card-item cardBody">{event.eventName}
+        <br></br>
+        <small>Days Away: {event.DaysAway}</small>
+    </Card.Body>
     </Card>
   ))}
   

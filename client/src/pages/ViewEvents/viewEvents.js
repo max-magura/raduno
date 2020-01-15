@@ -10,7 +10,7 @@ import {Col, Row} from 'react-bootstrap';
 class viewEvents extends Component {
 
   componentDidMount() {
-    axios.get('/login').then(result => console.log(result.data));
+    // axios.get('/login').then(result => console.log(result.data));
   }
 
 

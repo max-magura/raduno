@@ -18,25 +18,20 @@ class LoginForm extends Component {
       password: password
     }
     axios.post('/login', data).then(results => {
-      this.setState({
-        username: results.data.username,
-        password: results.data.password
-      })
+      localStorage.setItem('userInfo', JSON.stringify(results.data));
     });
   }
 
-  performSignUp = (username, password, email) => {
+  performSignUp = (username, password, email, firstName, lastName) => {
     var data = {
       username: username,
       password: password,
-      email: email
+      email: email,
+      firstName: firstName,
+      lastName: lastName
     }
     axios.post('/signUp', data).then(results => {
-      this.setState({
-        username: results.data.username,
-        password: results.data.password,
-        email: results.data.email
-      })
+      localStorage.setItem('userInfo', JSON.stringify(results.data));
     });
   }
 
@@ -62,14 +57,17 @@ class LoginForm extends Component {
     var emailInput = document.querySelector('#create-email').value;
     var usernameInput = document.querySelector('#create-username').value;
     var passwordInput = document.querySelector('#create-password').value;
+    var firstNameInput = document.querySelector('#first-name').value;
+    var lastNameInput = document.querySelector('#last-name').value;
 
-
-    this.performSignUp(usernameInput, passwordInput, emailInput);
-    this.setState({
-      email: emailInput,
-      username: usernameInput,
-      password: passwordInput
-    })
+    this.performSignUp(usernameInput, passwordInput, emailInput, firstNameInput, lastNameInput);
+    // this.setState({
+    //   email: emailInput,
+    //   username: usernameInput,
+    //   password: passwordInput,
+    //   firstName: firstNameInput,
+    //   lastName: lastNameInput
+    // })
   }
 
   signUpOverlayButtonPressed = () => {
@@ -86,8 +84,8 @@ class LoginForm extends Component {
     return (
       <div className="container" id="container">
 	      <div className="form-container sign-up-container">
-		      <form>
-            <h1 className="title">Create Account</h1>
+		      <form className="signUpForm">
+            <h1 className="title signUpTitle">Create Account</h1>
             <div className="social-container">
               <a href="www.facebook.com" className="social"><i className="fab fa-facebook-f"></i></a>
               <a href="www.google.com" className="social"><i className="fab fa-google-plus-g"></i></a>
@@ -97,6 +95,8 @@ class LoginForm extends Component {
             <input className="input" type="email" placeholder="Email" id="create-email"/>
             <input className="input" type="text" placeholder="Username" id="create-username"/>
             <input className="input" type="password" placeholder="Password" id="create-password" />
+            <input className="input" type="text" placeholder="First Name" id="first-name" />
+            <input className="input" type="text" placeholder="Last Name" id="last-name" />
             <button className="button size" style={{marginTop: '20px'}} onClick={this.signUpBtnClicked} id="signUpBTN">Sign Up</button>
           </form>
 	      </div>

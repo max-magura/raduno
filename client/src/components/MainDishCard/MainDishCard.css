@@ -9,22 +9,28 @@
   margin-right: auto;
 }
 .item-card {
-  width: 450px;
-  height: 450px;
-  border: solid 1px #455d7a; 
-  border-radius: 20px;
+   width: 450px;
+  height: 450px; 
+   border: solid 1px #455d7a;  
+  border-radius: 50px 50px;
   box-shadow: 10px 10px #455d7a83;
+  margin-top: 30px;
 }
 
 .item-card-header {
-  position: relative;
-  height: 60px;
+  /* position: relative; */
+  height: 100%;
+  width: 100%;
   background-color: #455d7a ;
   color: #fff;
+  border-radius: 30px !important;
+  padding: 20px;
+  overflow: hidden;
+  margin: auto;
 }
 
 .quantity-needed {
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
   right: 0;
   float: right;
@@ -41,9 +47,9 @@
   font-size: 30px;
 }
 
-.display-item-cards {
+ .display-item-cards {
   margin-top: 5em;
   display: grid;
   grid-template-columns: auto auto auto;
-}
+} 
 

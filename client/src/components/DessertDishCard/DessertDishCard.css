@@ -19,6 +19,7 @@
   height: 60px;
   background-color: #455d7a !important;
   color: #fff;
+  margin-top: 20px;
 }
 
 .quantity-needed {
@@ -40,7 +41,8 @@
 }
 
 .display-item-cards {
-  margin-top: 5em;
+  overflow: hidden;
+  margin-top: 8em;
   display: grid;
   grid-template-columns: auto auto auto;
 }

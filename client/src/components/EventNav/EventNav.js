@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Navbar,Modal, Button, Form, Card, ListGroup, Row, Col} from 'react-bootstrap';
+import {Navbar,Modal, Button, Form, Card, ListGroup, Row, Col, ButtonGroup, Container, Nav, ButtonToolbar} from 'react-bootstrap';
 import "./EventNav.css";
 import './styleModal.css';
 import Axios from "axios";
@@ -69,29 +69,57 @@ class EventNav extends React.Component {
   render() {
     return (
     <>
-    <Navbar fixed="top" expand="lg" className="colorEvent buttonContainer">
-      <Row>
-        <Col>
-        <div className="containerCount">
+    <Navbar fixed="top" expand="lg" className="colorEvent justify-content-between">
+      
+        
+        
+        
+          {/* <div class="containerBtn"> */}
+          <div className="events">
+            <Navbar.Text>
+               <div className="eventsTitle"> 
+                
+                Events
+                
+               </div> 
+              
+              
+                <div className="userName">
+                  
+                  Hosted By: Austin Graves
+                  
+                </div>
+                
+        </Navbar.Text>
+           </div>    
+                <div className="containerCount">
+                
           <div className="invitedNum">
             Invited:
           </div>
+          
+          
+          
             <div className="rsvpCount">
               RSVP:
             </div>
-        </div>
-        </Col>
-          <div class="containerBtn">
-            <Button className="eventButtonInfo" onClick={this.handleShowEventInfo}>Event Info</Button>
-              <div className="eventsTitle">
-                Events
-              </div>
-                <div className="userName">
-                  Hosted By: Austin Graves
-                </div>
+           
+       
+           </div>     
+          <ButtonToolbar>
+            <Button  className="eventButtonInfo" onClick={this.handleShowEventInfo}>Event Info</Button>
+            
+
+            
             <Button className="eventButtonRSVP" onClick={this.handleShowRsvpForm}>RSVP Here</Button>
-          </div>
-          </Row>
+           
+            
+            </ButtonToolbar>
+
+
+          {/* </div> */}
+         
+          
       </Navbar>
 
     <Modal show={this.state.showRsvpForm} onHide={this.handleCloseRsvpForm}>

@@ -1,59 +1,78 @@
-
-.eventButtonInfo {
-  position: absolute;
-  float:right;
-  top: 0;
-  right: 0;
-  margin-top: 10px;
-  margin-right: 5px;
-  background-color:#f95959;
-  
+* {
+  margin: 0;
+  padding: 0;
 }
+.eventButtonInfo {
+   /* position: absolute;
+  float:right;
+   top: 0;
+  right: 0; 
+  margin-top: 10px;*/
+   /* margin-right: 5px;    */
+  background-color:#f95959;
+  margin-right: 10px;
+ 
+}
+
+.eventButtonInfo:hover {
+  background-color: #f95959;
+  opacity: 0.5;
+}
+
 .eventButtonRSVP {
-  position: absolute;
-  float: left;
-  top: 0;
-  right: 150px;
+  /* position: absolute; 
+   float: left; 
+   top: 0;
+  right: 150px; 
   margin-top: 10px;
-  margin-right: 5px;
+  margin-right: 5px;*/
+  background-color: #f95959;
+ margin-right: 10px;
+}
+
+.eventButtonRSVP:hover {
+  opacity: 0.5;
   background-color: #f95959;
 }
 
 .userName {
-  position: relative;
+   /* position: relative; 
   float: right;
   top: 0;
   right: 0px;
-  left: 0px;
+  left: 0px; */
   color: white;
+  font-size: 20px;
+  
 }
 .colorEvent {
   background-color: #233142;
-  padding: 0px;
+  padding-bottom: 0px;
 }
 
- .containerCount{
-  position: fixed;
-  width: 300px;
+ /* .containerCount{
+  /* position: fixed;
+  width: 300px; 
   top: 0;
   right: 300px;
   margin-top: 20px;
-  margin-right: 30px;
-}
+  margin-right: 30px; 
+} */
 
 .invitedNum {
   color: white;
-  float: left;
+   /* float: left;  */
 
 }
 .rsvpCount {
-  float: right;
+   /* float: right;  */
   color: white;
 }
 
 .eventsTitle {
-  position: relative;
+  /* position: relative; */
   color: white;
   font-size: 25px;
-  padding: 5px;
+  
 }
+

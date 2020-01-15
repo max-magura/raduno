@@ -8,6 +8,11 @@
   background-color: #f95959;
 }
 
+.logoutButton:hover {
+  opacity: 0.5;
+  background-color: #f95959;
+}
+
 .containerButton {
   position: absolute;
   right: 0px;
@@ -24,6 +29,15 @@
   /* margin-top: px; */
   margin-right: 5px;
   background:#f95959;
+}
+
+.createEvent:hover {
+  background: #f95959;
+  opacity: 0.5;
+}
+
+.createEvent:after {
+  background: #f95959;
 }
 
 .logoutButton {

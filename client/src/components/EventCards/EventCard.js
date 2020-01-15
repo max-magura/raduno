@@ -8,20 +8,23 @@ class EventCard extends React.Component{
 <div className="container">
     <Row>
 
-        <Col>
+      <Col xs={12} md={6} lg={6}> 
 <Card className="upcomingEventCard">
+    
     <Card.Title>Upcoming Events</Card.Title>
   
   <Card className="card">
+      
       <Card.Body className="cardBody">This is an upcoming event.</Card.Body>
+      
   </Card>
 
   
 </Card>
+
 </Col>
 
-
-<Col>
+<Col xs={12} md={6} lg={6}>
 
 <Card className="pastEventCard">
     <Card.Title>Past Events</Card.Title>

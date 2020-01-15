@@ -9,7 +9,7 @@ import StaticModal from './pages/StaticModal/StaticModal'
 function App() {
   return (
     <div>
-      {/* { <AdminPage/> } */}
+       {/* { <AdminPage/> }  */}
       {<ViewEvents />}
       {/* <LoginPage /> */}
       {/* <StaticModal /> */}

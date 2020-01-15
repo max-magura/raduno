@@ -8,6 +8,12 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 app.use(express.json());
+const bcrypt = require('bcrypt');
+const saltRounds = 8;
+const myPlaintextPassword = '';
+const someOtherPlaintextPassword = 'not_bacon';
+var hashHolder = '';
+
 
 
 app.get('/', (req, res) => {
@@ -16,56 +22,61 @@ app.get('/', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-  var username = req.body.username;
-  var password = req.body.password;
-  console.log(`Username: ${username}`);
-  console.log(`Password: ${password}`);
-  var data = {
-    username: username,
-    password: password
-  }
-  // if (req.body.username === element.dataValues.username){
-  //   //Alert User Already Exist
-  //   console.log("User Already Exist")
-  //   flag += 1;
-  // } else if (req.body.email === element.dataValues.email){
-  //   console.log("Email Already Exists");
-  //   flag += 1;
+  // console.log(req)
+  const username = req.body.username
+  const password = req.body.password
+  console.log(username,'*******');
+  models.Users.findOne({ where: {username: username} }).then(user => {
+    // Check if user exists
+    if (!user) {
+      return res.status(404).json({ emailnotfound: "Email not found" });
+    } else {
+      const match = bcrypt.compare(password, user.dataValues.userPassword);
+    
+      if(match) {
+          console.log('yay');
+      }
+      
+    }
+  console.log(user);
+    // async function checkUser(username, password) {
+      //... fetch user from a db etc.
+   
+   
+      //...
   // }
-
-  // if (flag === 0) {
-    //   db.Users.create({
-    //     email: req.body.email,
-    //     username: req.body.username,
-    //     password: req.body.password
-    //   })
-    //   // testing to see if i can get the same username information back.
-    //   .then(function(response) {
-    //     db.users.findAll({ where: {username: req.body.username}}).then(function(response) {
-    //       console.log(response);
-    //       res.send(response[0].dataValues);
-    //     })
-    //   });
-    // };
-
-  res.send(data);
+  })
 });
+
 
 app.post('/signUp', (req, res) => {
-  var flag = 0;
-  console.log(req.body);
-  models.Users.create({
-    username: req.body.username,
-    userPassword: req.body.password,
-    firstName: 'test',
-    lastName: 'last name',
-    email: req.body.email
-  }).then(function(results) {
-    console.log(results);
-    res.send(results);
+  bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+    console.log(hash);
+    hashHolder = hash;
+    setTimeout(hashPrint, 1000);
+    
+    function hashPrint() {
+      bcrypt.compare(myPlaintextPassword, hashHolder, function(err, results) {
+        if (err) throw err;
+        console.log(results);
+      });
+    }
+    
+    var flag = 0;
+    console.log(hashHolder,'***********');
+    models.Users.create({
+      username: req.body.username,
+      userPassword: hashHolder,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email
+    }).then(function(results) {
+      console.log(results.body);
+        res.send(results);
+      });
+    });
   });
-});
-
+  
 
 app.get('/myEvents', (req, res) => {
   res.send({MyEvents: 'Route Hit'});

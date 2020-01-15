@@ -10,8 +10,8 @@ function App() {
   return (
     <div>
        {/* { <AdminPage/> }  */}
-      {<ViewEvents />}
-      {/* <LoginPage /> */}
+      {/* {<ViewEvents />} */}
+      <LoginPage />
       {/* <StaticModal /> */}
     </div>
   );

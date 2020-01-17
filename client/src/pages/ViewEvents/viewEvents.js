@@ -9,8 +9,20 @@ import {Col, Row} from 'react-bootstrap';
 
 class viewEvents extends Component {
 
+  state = {
+    eventInfo: [],
+    rsvpInfo: [],
+  }
+
   componentDidMount() {
-    // axios.get('/login').then(result => console.log(result.data));
+    var query = window.location.pathname;
+    axios.get(query).then((results) => {
+      console.log(results.data);
+      this.setState({
+        eventInfo: results.data.EventInfo,
+        rsvpInfo: results.data.RsvpInfo 
+      })
+    })
   }
 
 
@@ -21,7 +33,7 @@ class viewEvents extends Component {
         {/* <EventNav /> */}
         <Row>
         <Col>
-        <EventNav />
+        <EventNav eventInfo={this.state.eventInfo} rsvpInfo={this.state.rsvpInfo}/>
         <br></br>
         <MainDishCard dishesNeeded="3" description="Mains"/>
         </Col>

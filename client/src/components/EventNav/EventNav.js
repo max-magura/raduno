@@ -38,7 +38,10 @@ class EventNav extends React.Component {
   };
 
   handleShowEventInfo  = event => {
-    this.setState({showEventInfo: true});
+    this.setState({
+      showEventInfo: true,
+
+    });
   };
 
   handleInputChange = event => {
@@ -61,6 +64,7 @@ class EventNav extends React.Component {
     })
     .then(function(result) {
       console.log(result.data);
+      window.location.reload();
     })
     .catch(function(error) {
       console.log(error);
@@ -80,7 +84,7 @@ class EventNav extends React.Component {
             </div> 
 
             <div className="userName">
-              Hosted By: {this.state.eventInfo[0].CardeventHost}
+              Hosted By: {this.state.eventInfo[0].eventHost}
             </div>      
           </Navbar.Text>
         </div>    

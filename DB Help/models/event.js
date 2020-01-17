@@ -17,6 +17,10 @@ var Event = db.define('Event', {
         len: [1]
       }
     },
+    eventHost: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
     eventDescription: {
       type: Sequelize.TEXT,
       allowNull: false,
@@ -90,7 +94,6 @@ var Event = db.define('Event', {
     }
 }, {
   timestamps: false,
-  freezeTableName: true
 });
 
 Event.sync();

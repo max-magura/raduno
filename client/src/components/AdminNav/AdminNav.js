@@ -70,21 +70,22 @@ class AdminNav extends React.Component {
       template_params: {
         'email': sessionStorage.email,  
         'Name': `${sessionStorage.firstName} ${sessionStorage.lastName}`,
-        'event_name': data.eventName,
-        'event_location': `${data.eventLocationStreet}, ${data.eventLocationCity}, ${data.eventLocationState}, ${data.eventLocationZipCode}`,
-        'event_description': data.eventDescription,
-        'event_date': data.eventDate,
-        'event_time': data.eventTime,
-        'event_url': `${window.location.host}/event/${data.id}`
+        'event_name': data.data.eventName,
+        'event_location': `${data.data.eventLocationStreet}, ${data.data.eventLocationCity}, ${data.data.eventLocationState}, ${data.data.eventLocationZipCode}`,
+        'event_description': data.data.eventDescription,
+        'event_date': data.data.eventDate,
+        'event_time': data.data.eventTime,
+        'event_url': `${window.location.host}/event/${data.data.id}`
       }
     };
     
-      console.log(emailData);
-    // axios.post('https://api.emailjs.com/api/v1.0/email/send', emailData).then((results) => {
-    //   console.log(results);
-    // }).catch((err) => {
-    //   console.log(err);
-    // });
+      console.log(`Line 82 Admin Nav: ${emailData}`);
+    axios.post('https://api.emailjs.com/api/v1.0/email/send', emailData).then((results) => {
+      console.log(results);
+      window.location.reload();
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 
 
@@ -109,9 +110,10 @@ class AdminNav extends React.Component {
         eventNumberInvited: this.state.eventNumberInvited
       })
       .then((result) => {
-        console.log(result.data);
+        console.log(` After Post: ${result}`);
         var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
         this.sendEmailJS(result.data, userInfo);
+        
       }).catch((error) => {
         console.log(error);
       });

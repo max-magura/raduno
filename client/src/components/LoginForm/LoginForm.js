@@ -18,8 +18,9 @@ class LoginForm extends Component {
       password: password
     }
     axios.post('/login', data).then(results => {
-      if (results.data.Successful === true) {
-        sessionStorage.setItem('userInfo', JSON.stringify(results.data));
+      console.log(results);
+      if (results.data.Success === true) {
+        sessionStorage.setItem('userInfo', JSON.stringify(results.data.Data));
         window.location.href = '/dashboard';
       } else {
         alert(results.data.Message);
@@ -36,8 +37,8 @@ class LoginForm extends Component {
       lastName: lastName
     }
     axios.post('/signUp', data).then(results => {
-      if (results.data.Successful === true) {
-        sessionStorage.setItem('userInfo', JSON.stringify(results.data));
+      if (results.data.Success === true) {
+        sessionStorage.setItem('userInfo', JSON.stringify(results.data.Data));
         window.location.href = '/dashboard';
       } else {
         alert(results.data.Message);
@@ -48,14 +49,14 @@ class LoginForm extends Component {
 
 
     signInBtnClicked = (e) => {
-      sessionStorage.setItem('userInfo', JSON.stringify({
-        id: 1,
-        username: 'Bob',
-        password: 'bob',
-        firstName: 'bob',
-        lastName: 'rogers',
-        email: 'bob@gmail.com'
-      }));
+      // sessionStorage.setItem('userInfo', JSON.stringify({
+      //   id: 1,
+      //   username: 'Bob',
+      //   password: 'bob',
+      //   firstName: 'bob',
+      //   lastName: 'rogers',
+      //   email: 'austingraves0727@gmail.com'
+      // }));
       e.preventDefault();
       // console.log('Sign In');
       var usernameInput = document.getElementById('username').value;
@@ -70,14 +71,14 @@ class LoginForm extends Component {
     }
 
     signUpBtnClicked = (e) => {
-      sessionStorage.setItem('userInfo', JSON.stringify({
-        id: 1,
-        username: 'Bob',
-        password: 'bob',
-        firstName: 'bob',
-        lastName: 'rogers',
-        email: 'bob@gmail.com'
-      }));
+      // sessionStorage.setItem('userInfo', JSON.stringify({
+      //   id: 1,
+      //   username: 'Bob',
+      //   password: 'bob',
+      //   firstName: 'bob',
+      //   lastName: 'rogers',
+      //   email: 'austingraves0727@gmail.com'
+      // }));
       e.preventDefault();
       // console.log('Sign Up');
       var emailInput = document.querySelector('#create-email').value;

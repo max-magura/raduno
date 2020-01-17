@@ -15,7 +15,7 @@ const myPlaintextPassword = '';
 // const someOtherPlaintextPassword = 'not_bacon';
 var hashHolder = '';
 
-app.use(express.static("client/build"));
+// app.use(express.static("client/build"));
 
 app.get('/', (req, res) => {
   // console.log('/ route hit');
@@ -42,7 +42,8 @@ app.post('/login', (req, res) => {
           // res.redirect('/home');
           console.log("Login to Home");
           res.send({
-            Success: true
+            Success: true,
+            Data: user
           });
         } else{
           // res.send('Incorrect password');

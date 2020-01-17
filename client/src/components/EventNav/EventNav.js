@@ -14,7 +14,9 @@ class EventNav extends React.Component {
     rsvpName: "",
     rsvpNumberInParty: 0,
     rsvpTypeofDish: "",
-    rsvpNameofDish: ""
+    rsvpNameofDish: "",
+    eventInfo: this.props.eventInfo,
+    rsvpInfo: this.props.rsvpInfo
   };
 
   handleCloseRsvpForm  = event => {
@@ -50,8 +52,8 @@ class EventNav extends React.Component {
   handleRsvpFormSubmit = event =>{
     event.preventDefault();
 
-    Axios.post('/event/rsvp/1', {
-      event_id: 1,  
+    Axios.post(`/event/rsvp/${this.state.rsvpInfo[0].event_id}`, {
+      event_id: this.state.rsvpInfo[0].event_id,
       rsvpName: this.state.rsvpName,
       rsvpNumberInParty: this.state.rsvpNumberInParty,
       rsvpTypeofDish: this.state.rsvpTypeofDish,
@@ -70,41 +72,25 @@ class EventNav extends React.Component {
     return (
     <>
     <Navbar fixed="top" expand="lg" className="colorEvent justify-content-between">
-      
-        
-        
-        
-          {/* <div class="containerBtn"> */}
-          <div className="events">
-            <Navbar.Text>
-               <div className="eventsTitle"> 
-                
-                Events
-                
-               </div> 
-              
-              
-                <div className="userName">
-                  
-                  Hosted By: Austin Graves
-                  
-                </div>
-                
-        </Navbar.Text>
-           </div>    
-                {/* <div className="containerCount">
-                
+      {/* <div class="containerBtn"> */}
+        <div className="events">
+          <Navbar.Text>
+            <div className="eventsTitle"> 
+              Event: {this.state.eventInfo[0].eventName}
+            </div> 
+
+            <div className="userName">
+              Hosted By: {this.state.eventInfo[0].CardeventHost}
+            </div>      
+          </Navbar.Text>
+        </div>    
+        {/* <div className="containerCount">        
           <div className="invitedNum">
             Invited:
           </div>
-          
-          
-          
             <div className="rsvpCount">
               RSVP:
             </div>
-           
-       
            </div>      */}
           <ButtonToolbar>
             <Button  className="eventButtonInfo" onClick={this.handleShowEventInfo}>Event Info</Button>
@@ -127,7 +113,7 @@ class EventNav extends React.Component {
       <Modal.Title>Create Your Event</Modal.Title>
     </Modal.Header>
 
-    <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto'}}>
+    <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflowY': 'auto'}}>
         <Form className="modalBody">
 
         <Form.Group>
@@ -143,6 +129,7 @@ class EventNav extends React.Component {
         <Form.Group>
           <Form.Label>Type of Dish</Form.Label>
           <Form.Control as="select" name="rsvpTypeofDish" value={this.state.rsvpTypeofDish} onChange={this.handleInputChange}>
+            <option value="" disabled selected>Select your option</option>
             <option>Main</option>
             <option>Side</option>
             <option>Dessert</option>
@@ -162,8 +149,7 @@ class EventNav extends React.Component {
 
       <Button className="btn btn-primary submit-btn"
        disabled = {!(this.state.rsvpName && 
-        this.state.rsvpNumberInParty && this.state.rsvpNumberInParty && this.state.rsvpNameofDish
-        )}
+        this.state.rsvpNumberInParty && this.state.rsvpTypeofDish && this.state.rsvpNameofDish)}
       variant="primary" type="submit" onClick={this.handleRsvpFormSubmit}>Submit</Button>
 
     </Modal.Footer>
@@ -174,22 +160,22 @@ class EventNav extends React.Component {
       <Modal.Title>Event Information</Modal.Title>
     </Modal.Header>
   
-    <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto'}}>
+    <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflowY': 'auto'}}>
       <Card>
         <Card.Body>
-          <Card.Title>Event Name.props</Card.Title>
+          <Card.Title>{this.state.eventInfo.eventName}</Card.Title>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <b>Date:</b> this.props.date
+                <b>Date:</b> {this.state.eventInfo.eventDate}
               </ListGroup.Item>
               <ListGroup.Item>
-                <b>Time:</b> this.props.time
+                <b>Time:</b> {this.state.eventInfo.eventTime}
               </ListGroup.Item>
               <ListGroup.Item>
-                <b>Address:</b> this.props.address
+                <b>Address:</b> <a href={`https://www.google.com/maps/place/${this.state.eventInfo.eventLocationStreet + " " + this.state.eventInfo.eventLocationCity + " " + this.state.eventInfo.eventLocationState + " " + this.state.eventInfo.eventLocationZipCode}`} target="_blank">{this.state.eventInfo.eventLocationStreet} {this.state.eventInfo.eventLocationCity},{this.state.eventInfo.eventLocationState}, {this.state.eventInfo.eventLocationZipCode}</a>
               </ListGroup.Item>
               <ListGroup.Item>
-                <b>Description:</b> this.props.description I'm testing this to see how much info about the event you can put in here. hopefully, it is a lot in case some people are super long winded. blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah.
+                <b>Description:</b> {this.state.eventInfo.eventDescription}
               </ListGroup.Item>
             </ListGroup>
         </Card.Body>

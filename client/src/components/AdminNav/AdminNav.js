@@ -9,6 +9,7 @@ class AdminNav extends React.Component {
   state = {
     showCreateEvent: false,
     eventName: "",
+    eventHost: "",
     eventDescription: "",
     eventDate: "",
     eventTime: "",
@@ -28,6 +29,7 @@ class AdminNav extends React.Component {
         eventName: "",
         eventDescription: "",
         eventDate: "",
+        eventHost: "",
         eventTime: "",
         eventLocationStreet: "",
         eventLocationCity: "",
@@ -93,6 +95,7 @@ class AdminNav extends React.Component {
       axios.post('/event/create', {
         user_id: userInfo.id,  
         eventName: this.state.eventName,
+        eventHost: this.state.eventHost,
         eventDescription: this.state.eventDescription,
         eventDate: this.state.eventDate,
         eventTime: this.state.eventTime,
@@ -143,12 +146,17 @@ class AdminNav extends React.Component {
       <Modal.Title>Create Your Event</Modal.Title>
     </Modal.Header>
 
-    <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto'}}>
+    <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflowY': 'auto'}}>
         <Form className="modalBody">
 
         <Form.Group>
           <Form.Label>Event Name</Form.Label>
           <Form.Control type="text" name="eventName" value={this.state.eventName} onChange={this.handleInputChange} placeholder="Christmas Karaoke 2020" />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Hosted By</Form.Label>
+          <Form.Control type="text" name="eventHost" value={this.state.eventHost} onChange={this.handleInputChange} placeholder="Enter Host Name Here (You)" />
         </Form.Group>
 
         <Form.Group>
@@ -265,7 +273,7 @@ class AdminNav extends React.Component {
       <Button variant="secondary" onClick={this.handleCloseCreateEvent}>Close</Button>
       <Button className="btn btn-primary submit-btn" 
       disabled = {!(this.state.eventName
-        // && this.state.eventDescription && this.state.eventTime && this.state.eventLocationStreet && this.state.eventLocationCity && this.state.eventLocationState && this.state.eventLocationZipCode && this.state.eventMainDishesNeeded && this.state.eventSideDishesNeeded && this.state.eventDessertsNeeded && this.state.eventNumberInvited
+        // && this.state.eventHost && this.state.eventDescription && this.state.eventTime && this.state.eventLocationStreet && this.state.eventLocationCity && this.state.eventLocationState && this.state.eventLocationZipCode && this.state.eventMainDishesNeeded && this.state.eventSideDishesNeeded && this.state.eventDessertsNeeded && this.state.eventNumberInvited
         )}
       variant="primary" type="submit" onClick={this.handleCreateEventFormSubmit}>Submit</Button>
     </Modal.Footer>

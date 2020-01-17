@@ -42,7 +42,8 @@ class LoginForm extends Component {
       } else {
         alert(results.data.Message);
       }
-    });
+    })
+  };
 
 
 
@@ -93,7 +94,7 @@ class LoginForm extends Component {
       //   firstName: firstNameInput,
       //   lastName: lastNameInput
       // })
-    }
+    };
 
   signUpOverlayButtonPressed = () => {
     const container = document.getElementById('container');

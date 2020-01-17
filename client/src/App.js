@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginPage from './pages/LoginPage/loginPage';
 import ViewEvents from './pages/ViewEvents/viewEvents';
 import AdminPage from './pages/AdminPage/AdminPage';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (

@@ -28,7 +28,8 @@ var Users = db.define('User', {
     allowNull: false,
   }
 }, {
-  timestamps: false
+  timestamps: false,
+  freezeTableName: true
 });
 
 Users.sync();

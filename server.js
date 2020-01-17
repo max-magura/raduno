@@ -15,7 +15,7 @@ const myPlaintextPassword = '';
 // const someOtherPlaintextPassword = 'not_bacon';
 var hashHolder = '';
 
-
+app.use(express.static("client/build"));
 
 app.get('/', (req, res) => {
   // console.log('/ route hit');
@@ -168,7 +168,6 @@ app.post('/signUp', (req, res) => {
   // if (process.env.NODE_ENV === "production") {
   //   app.use(express.static("client/build"));
   // }
-  app.use(express.static("client/build"));
   
   app.listen(port, () => {
     console.log(`Server Started On Port: ${port}`)

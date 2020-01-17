@@ -18,7 +18,7 @@ var hashHolder = '';
 
 
 app.get('/', (req, res) => {
-  console.log('/ route hit');
+  // console.log('/ route hit');
   res.send({Message: 'This is the home route'});
 })
 
@@ -123,8 +123,11 @@ app.post('/signUp', (req, res) => {
   
   app.post('/event/create', (req, res) => {
     models.Event.create(req.body).then(results => {
-      console.log(results);
-      res.send(results);
+      // console.log(results);
+      res.send({
+        Success: true,
+        data:results
+      });
     })
   });
   
@@ -153,18 +156,13 @@ app.post('/signUp', (req, res) => {
   });
   
   app.post('/event/rsvp/:id', (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     models.RSVP.create(req.body).then(results => console.log(results))
-    res.send(req.body);
+    res.send({
+      Success: true,
+      data: req.body
+    });
   });
-  
-  // app.get('/event/info/:id', (req, res) => {
-  //   res.send({EventInfo: `Route Hit. Event Info Id: ${req.params.id}`});
-  // });
-  
-  app.get('/redirect', (req, res) => {
-    res.send({Message: 'You Dont Have Permission To View That Page'});
-  })
   
   app.listen(port, () => {
     console.log(`Server Started On Port: ${port}`)

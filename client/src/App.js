@@ -1,20 +1,20 @@
 import React from 'react';
-// import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginPage from './pages/LoginPage/loginPage';
 import ViewEvents from './pages/ViewEvents/viewEvents';
 import AdminPage from './pages/AdminPage/AdminPage';
-import StaticModal from './pages/StaticModal/StaticModal'
 
 function App() {
   return (
-    <div>
-
-        {/* { <AdminPage/> }     */}
-       {<ViewEvents />}  
-       {/* <LoginPage />  */}
-      {/* <StaticModal />  */}
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/" component={LoginPage} />
+          <Route exact path="/dashboard" component={AdminPage} />
+          <Route exact path="/event/:id" component={ViewEvents} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

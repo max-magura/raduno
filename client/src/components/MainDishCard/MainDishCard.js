@@ -4,8 +4,12 @@ import {Card, Row, Col} from 'react-bootstrap';
 import './MainDishCard.css';
 import ItemCardsItems from '../ItemCardItems/ItemCardItems';
 
-
 class ItemCards extends Component {
+
+  state = {
+    mainDishInfo: this.props.mainDishInfo
+  };
+
   render() {
     return (
       
@@ -19,16 +23,11 @@ class ItemCards extends Component {
         </Col>
         <Row>
           <Col>
-        <Card.Body >
-          <ItemCardsItems foodName="Steak" broughtBy="Joel Buentello"/>
-          <ItemCardsItems foodName="Chicken" broughtBy="Max Magura"/>
-          <ItemCardsItems foodName="Shrimp" broughtBy="Scott Nelson"/>
-          <ItemCardsItems foodName="Soup" broughtBy="Austin Graves"/>
-          <ItemCardsItems foodName="Soup" broughtBy="Austin Graves"/>
-          <ItemCardsItems foodName="Soup" broughtBy="Austin Graves"/>
-          <ItemCardsItems foodName="Soup" broughtBy="Austin Graves"/>
-
-        </Card.Body>
+          {this.state.mainDishInfo.map((dish, index) => (
+          <Card.Body key={index}>
+            <ItemCardsItems foodName={dish.rsvpNameofDish} broughtBy={dish.rsvpName}/>
+          </Card.Body>
+        ))} 
         </Col>
         </Row>
       </Card>

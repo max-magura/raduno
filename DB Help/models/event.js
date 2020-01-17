@@ -89,7 +89,8 @@ var Event = db.define('Event', {
       }
     }
 }, {
-  timestamps: false
+  timestamps: false,
+  freezeTableName: true
 });
 
 Event.sync();

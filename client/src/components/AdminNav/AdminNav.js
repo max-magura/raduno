@@ -45,9 +45,8 @@ class AdminNav extends React.Component {
   };
 
   handleLogout = () => {
-    axios.get('/redirect').then((results) => {
-      console.log(results.data);
-    })
+    sessionStorage.clear();
+    window.location.href = '/';
   }
 
 
@@ -59,34 +58,37 @@ class AdminNav extends React.Component {
       console.log(this.state);
   }  
 
-  sendEmailJS = () => {
+  sendEmailJS = (data, sessionStorage) => {
+    console.log(data.data);
     // console.log('Inside Send Email Function')
-    var data = {
+    var emailData = {
       service_id: 'raduno',
       template_id: 'raduno_email_template',
       user_id: 'user_IXhtnrmaOcstiR7H7xgSR',
       template_params: {
-        'email': 'austingraves0727@gmail.com',  
-        'Name': 'Test',
-        'event_name': 'Test Event Name',
-        'event_location': '101 East Main Street, Gallatin, TN 37066',
-        'event_description': 'Blah Blah Blha',
-        'event_date': '10/10/2020',
-        'event_time': '7:00AM',
-        'event_url': 'www.youtube.com'
+        'email': sessionStorage.email,  
+        'Name': `${sessionStorage.firstName} ${sessionStorage.lastName}`,
+        'event_name': data.eventName,
+        'event_location': `${data.eventLocationStreet}, ${data.eventLocationCity}, ${data.eventLocationState}, ${data.eventLocationZipCode}`,
+        'event_description': data.eventDescription,
+        'event_date': data.eventDate,
+        'event_time': data.eventTime,
+        'event_url': `${window.location.host}/event/${data.id}`
       }
     };
     
-    axios.post('https://api.emailjs.com/api/v1.0/email/send', data).then((results) => {
-      console.log(results);
-    }).catch((err) => {
-      console.log(err);
-    });
+      console.log(emailData);
+    // axios.post('https://api.emailjs.com/api/v1.0/email/send', emailData).then((results) => {
+    //   console.log(results);
+    // }).catch((err) => {
+    //   console.log(err);
+    // });
   }
+
 
   handleCreateEventFormSubmit = event => {
     if (userInfo !== null) {
-      var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
       event.preventDefault();
       axios.post('/event/create', {
         user_id: userInfo.id,  
@@ -105,15 +107,12 @@ class AdminNav extends React.Component {
       })
       .then((result) => {
         console.log(result.data);
-        this.sendEmailJS();
+        var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+        this.sendEmailJS(result.data, userInfo);
       }).catch((error) => {
         console.log(error);
       });
       this.handleCloseCreateEvent();
-    } else {
-      axios.get('/redirect').then((results) => {
-        console.log(results);
-      })
     }
   }
 

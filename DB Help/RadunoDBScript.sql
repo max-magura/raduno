@@ -20,6 +20,7 @@ CREATE TABLE Events (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	user_id INT NOT NULL,
 	eventName VARCHAR(255) NOT NULL,
+	eventHost VARCHAR(255) NOT NULL,
 	eventNumberInvited INT NOT NULL,
 	eventDescription VARCHAR(255) NOT NULL,
 	eventLocationStreet VARCHAR(255) NOT NULL,

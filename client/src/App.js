@@ -14,12 +14,6 @@ function App() {
        {<ViewEvents />}  
        {/* <LoginPage />  */}
       {/* <StaticModal />  */}
-=======
-       { <AdminPage/> } 
-      {/* {<ViewEvents />} */}
-      {/* <LoginPage /> */}
-      {/* <StaticModal /> */}
-
     </div>
   );
 }

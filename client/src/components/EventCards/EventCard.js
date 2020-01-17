@@ -8,7 +8,7 @@ class EventCard extends React.Component{
         passedEvents: []
     };
     componentDidMount() {
-        var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
         if (userInfo !== null) {
             axios.get(`/myEvents/${userInfo.id}`).then(results => {
                 // console.log(results.data.upcomingEvents);
@@ -18,9 +18,7 @@ class EventCard extends React.Component{
                 })
              });
         } else {
-            axios.get('/redirect').then((results) => {
-                console.log(results);
-            });
+                console.log({Message: 'No User Info Found'});
         }
     }
 

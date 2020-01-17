@@ -92,7 +92,7 @@ class EventNav extends React.Component {
                 
         </Navbar.Text>
            </div>    
-                <div className="containerCount">
+                {/* <div className="containerCount">
                 
           <div className="invitedNum">
             Invited:
@@ -105,7 +105,7 @@ class EventNav extends React.Component {
             </div>
            
        
-           </div>     
+           </div>      */}
           <ButtonToolbar>
             <Button  className="eventButtonInfo" onClick={this.handleShowEventInfo}>Event Info</Button>
             

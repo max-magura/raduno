@@ -8,7 +8,7 @@ import ItemCardsItems from '../ItemCardItems/ItemCardItems';
 class ItemCards extends Component {
   render() {
     return (
-      <Card className="item-card center">
+      <Card className="item-card center" style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto', 'overflow-x': 'none'}}>
         <Col>
         <Card.Header className="item-card-header">
           <span className="description">{this.props.description}</span>
@@ -21,6 +21,9 @@ class ItemCards extends Component {
           <ItemCardsItems foodName="French Fries" broughtBy="Joel Buentello"/>
           <ItemCardsItems foodName="Potatoes" broughtBy="Max Magura"/>
           <ItemCardsItems foodName="Steamed Broccoli" broughtBy="Scott Nelson"/>
+          <ItemCardsItems foodName="Mashed Potatoes" broughtBy="Austin Graves"/>
+          <ItemCardsItems foodName="Mashed Potatoes" broughtBy="Austin Graves"/>
+          <ItemCardsItems foodName="Mashed Potatoes" broughtBy="Austin Graves"/>
           <ItemCardsItems foodName="Mashed Potatoes" broughtBy="Austin Graves"/>
 
         </Card.Body>

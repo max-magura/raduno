@@ -1,34 +1,45 @@
 * {
   margin: 0;
   padding: 0;
+  font-size: 20px;
 }
 
 .item-card-item {
   background-color: #f95959;
-  height: 60px;
+  height: 100%s;
   color: #fff;
-  position: relative; 
+  /* position: relative; */
   margin-top: 1em;
   margin-bottom: 1em;
-  padding: 5px; 
-  border-radius: 50px !important;
+  padding: 10px; 
+  border-radius: 50px !important; 
+  /* overflow: hidden; */
 }
 
 .food-name {
-  font-size: 20px;
-  position: absolute;
+  font-size: 20px !important;
+  
+  /* margin: auto; */
+ 
+   /* position: absolute;
   top: 0;
   left: 0;
   margin-top: 8px;
-  margin-left: 20px;
+  margin-left: 20px;  */
+  margin-left: auto;
 }
 
-.person-bringing {
-  position: absolute;
+ .person-bringing {
+  font-size: 20px;
+  width: 50%;
+  /* margin: auto; */
+ margin-right: auto;
+ }
+ /* position: absolute;
   right: 0;
   top: 0;
   margin-top: 20px;
   font-size: 14px;
   margin-right: 20px;
-}
+ */
 

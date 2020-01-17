@@ -9,7 +9,8 @@ class ItemCards extends Component {
   render() {
     return (
       
-      <Card className="item-card center">
+      <Card className="item-card center"  style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto', 'overflow-x': 'none'}}>
+
         <Col>
         <Card.Header className="item-card-header">
           <span className="description">{this.props.description}</span>
@@ -18,10 +19,13 @@ class ItemCards extends Component {
         </Col>
         <Row>
           <Col>
-        <Card.Body>
+        <Card.Body >
           <ItemCardsItems foodName="Steak" broughtBy="Joel Buentello"/>
           <ItemCardsItems foodName="Chicken" broughtBy="Max Magura"/>
           <ItemCardsItems foodName="Shrimp" broughtBy="Scott Nelson"/>
+          <ItemCardsItems foodName="Soup" broughtBy="Austin Graves"/>
+          <ItemCardsItems foodName="Soup" broughtBy="Austin Graves"/>
+          <ItemCardsItems foodName="Soup" broughtBy="Austin Graves"/>
           <ItemCardsItems foodName="Soup" broughtBy="Austin Graves"/>
 
         </Card.Body>

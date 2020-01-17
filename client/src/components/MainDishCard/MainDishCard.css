@@ -21,12 +21,13 @@
   /* position: relative; */
   height: 100%;
   width: 100%;
-  background-color: #455d7a ;
-  color: #fff;
+  background-color: white !important ;
+  color: #455d7a !important;
   border-radius: 30px !important;
   padding: 20px;
-  overflow: hidden;
+  overflow: none;
   margin: auto;
+  border: 1px solid white;
 }
 
 .quantity-needed {

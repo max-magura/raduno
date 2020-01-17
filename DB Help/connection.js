@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
-var db = new Sequelize('radunoDB', 'active', 'password', {
-  host: 'localhost',
+var db = new Sequelize('radunoDB', 'root', 'Saleen_454', {
+  host: '127.0.0.1',
   dialect: 'mysql'
 });
 

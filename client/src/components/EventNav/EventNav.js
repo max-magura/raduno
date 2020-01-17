@@ -50,20 +50,20 @@ class EventNav extends React.Component {
   handleRsvpFormSubmit = event =>{
     event.preventDefault();
 
-    Axios.post('/event/rsvp/:id', {  
+    Axios.post('/event/rsvp/1', {
+      event_id: 1,  
       rsvpName: this.state.rsvpName,
       rsvpNumberInParty: this.state.rsvpNumberInParty,
       rsvpTypeofDish: this.state.rsvpTypeofDish,
       rsvpNameofDish: this.state.rsvpNameofDish
     })
     .then(function(result) {
-      console.log(result);
+      console.log(result.data);
     })
     .catch(function(error) {
       console.log(error);
     });
     this.handleCloseRsvpForm();
-    
   }
 
   render() {

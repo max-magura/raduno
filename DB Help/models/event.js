@@ -7,6 +7,9 @@ var Event = db.define('Event', {
       primaryKey: true,
       autoIncrement: true,
     },
+    user_id: {
+      type: Sequelize.INTEGER,
+    },
     eventName: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -85,6 +88,10 @@ var Event = db.define('Event', {
         len: [1]
       }
     }
+}, {
+  timestamps: false
 });
+
+Event.sync();
 
 module.exports = Event;

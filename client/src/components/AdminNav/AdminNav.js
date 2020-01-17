@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, Modal, Button, Form} from 'react-bootstrap';
 import "./AdminNav.css";
 import './styleModal.css';
-import Axios from "axios";
+import axios from "axios";
 
 class AdminNav extends React.Component {
   state = {
@@ -44,6 +44,12 @@ class AdminNav extends React.Component {
     this.setState({showCreateEvent: true});
   };
 
+  handleLogout = () => {
+    axios.get('/redirect').then((results) => {
+      console.log(results.data);
+    })
+  }
+
 
   handleInputChange = event => {
      const {name, value} = event.target;
@@ -53,30 +59,62 @@ class AdminNav extends React.Component {
       console.log(this.state);
   }  
 
-  handleCreateEventFormSubmit = event =>{
-    event.preventDefault();
-
-    Axios.post('/event/create', {  
-      eventName: this.state.eventName,
-      eventDescription: this.state.eventDescription,
-      eventDate: this.state.eventDate,
-      eventTime: this.state.eventTime,
-      eventLocationStreet: this.state.eventLocationStreet,
-      eventLocationCity: this.state.eventLocationCity,
-      eventLocationState: this.state.eventLocationState,
-      eventLocationZipCode: this.state.eventLocationZipCode,
-      eventMainDishesNeeded: this.state.eventMainDishesNeeded,
-      eventSideDishesNeeded: this.state.eventSideDishesNeeded,
-      eventDessertsNeeded: this.state.eventDessertsNeeded,
-      eventNumberInvited: this.state.eventNumberInvited
-    })
-    .then(function(result) {
-      console.log(result);
-    })
-    .catch(function(error) {
-      console.log(error);
+  sendEmailJS = () => {
+    // console.log('Inside Send Email Function')
+    var data = {
+      service_id: 'raduno',
+      template_id: 'raduno_email_template',
+      user_id: 'user_IXhtnrmaOcstiR7H7xgSR',
+      template_params: {
+        'email': 'austingraves0727@gmail.com',  
+        'Name': 'Test',
+        'event_name': 'Test Event Name',
+        'event_location': '101 East Main Street, Gallatin, TN 37066',
+        'event_description': 'Blah Blah Blha',
+        'event_date': '10/10/2020',
+        'event_time': '7:00AM',
+        'event_url': 'www.youtube.com'
+      }
+    };
+    
+    axios.post('https://api.emailjs.com/api/v1.0/email/send', data).then((results) => {
+      console.log(results);
+    }).catch((err) => {
+      console.log(err);
     });
-    this.handleCloseCreateEvent();
+  }
+
+  handleCreateEventFormSubmit = event => {
+    if (userInfo !== null) {
+      var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      event.preventDefault();
+      axios.post('/event/create', {
+        user_id: userInfo.id,  
+        eventName: this.state.eventName,
+        eventDescription: this.state.eventDescription,
+        eventDate: this.state.eventDate,
+        eventTime: this.state.eventTime,
+        eventLocationStreet: this.state.eventLocationStreet,
+        eventLocationCity: this.state.eventLocationCity,
+        eventLocationState: this.state.eventLocationState,
+        eventLocationZipCode: this.state.eventLocationZipCode,
+        eventMainDishesNeeded: this.state.eventMainDishesNeeded,
+        eventSideDishesNeeded: this.state.eventSideDishesNeeded,
+        eventDessertsNeeded: this.state.eventDessertsNeeded,
+        eventNumberInvited: this.state.eventNumberInvited
+      })
+      .then((result) => {
+        console.log(result.data);
+        this.sendEmailJS();
+      }).catch((error) => {
+        console.log(error);
+      });
+      this.handleCloseCreateEvent();
+    } else {
+      axios.get('/redirect').then((results) => {
+        console.log(results);
+      })
+    }
   }
 
   getZipCode = (str) => {
@@ -97,7 +135,7 @@ class AdminNav extends React.Component {
       <div className="myEvents">My Events</div>
         <div className="containerButton">
           <Button className="createEvent" onClick={this.handleShowCreateEvent}>Create Event</Button>
-          <Button className="logoutButton" type="submit">Logout</Button>
+          <Button className="logoutButton" onClick={this.handleLogout} type="submit">Logout</Button>
         </div>
     </Navbar>
 

@@ -6,6 +6,11 @@ import ItemCardsItems from '../ItemCardItems/ItemCardItems';
 
 
 class ItemCards extends Component {
+
+  state = {
+    dessertInfo: this.props.dessertInfo
+  };
+
   render() {
     return (
       <Card className="item-card center" style={{'max-height': 'calc(100vh - 210px)', 'overflow-y': 'auto', 'overflow-x': 'none'}}>
@@ -17,15 +22,11 @@ class ItemCards extends Component {
         </Col>
         <Row>
           <Col>
-        <Card.Body>
-          <ItemCardsItems foodName="Cherry Pie" broughtBy="Joel Buentello"/>
-          <ItemCardsItems foodName="Lemon Lie Pie" broughtBy="Max Magura"/>
-          <ItemCardsItems foodName="Brownies" broughtBy="Scott Nelson"/>
-          <ItemCardsItems foodName="Cookies" broughtBy="Austin Graves"/>
-          <ItemCardsItems foodName="Cookies" broughtBy="Austin Graves"/>
-          <ItemCardsItems foodName="Cookies" broughtBy="Austin Graves"/>
-          
-        </Card.Body>
+          {this.state.dessertInfo.map((dish, index) => (
+          <Card.Body key={index}>
+            <ItemCardsItems foodName={dish.rsvpNameofDish} broughtBy={dish.rsvpName}/>
+          </Card.Body>
+        ))} 
         </Col>
         </Row>
       </Card>

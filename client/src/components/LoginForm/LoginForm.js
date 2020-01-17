@@ -18,8 +18,12 @@ class LoginForm extends Component {
       password: password
     }
     axios.post('/login', data).then(results => {
-      localStorage.setItem('userInfo', JSON.stringify(results.data));
-      console.log(results);
+      if (results.data.Successful === true) {
+        sessionStorage.setItem('userInfo', JSON.stringify(results.data));
+        window.location.href = '/dashboard';
+      } else {
+        alert(results.data.Message);
+      }
     });
   }
 
@@ -32,44 +36,64 @@ class LoginForm extends Component {
       lastName: lastName
     }
     axios.post('/signUp', data).then(results => {
-      localStorage.setItem('userInfo', JSON.stringify(results.data));
+      if (results.data.Successful === true) {
+        sessionStorage.setItem('userInfo', JSON.stringify(results.data));
+        window.location.href = '/dashboard';
+      } else {
+        alert(results.data.Message);
+      }
     });
-  }
 
 
 
-  signInBtnClicked = (e) => {
-    e.preventDefault();
-    // console.log('Sign In');
-    var usernameInput = document.getElementById('username').value;
-    var passwordInput = document.getElementById('password').value;
-    
-    this.performSignIn(usernameInput, passwordInput);
+    signInBtnClicked = (e) => {
+      sessionStorage.setItem('userInfo', JSON.stringify({
+        id: 1,
+        username: 'Bob',
+        password: 'bob',
+        firstName: 'bob',
+        lastName: 'rogers',
+        email: 'bob@gmail.com'
+      }));
+      e.preventDefault();
+      // console.log('Sign In');
+      var usernameInput = document.getElementById('username').value;
+      var passwordInput = document.getElementById('password').value;
+      
+      this.performSignIn(usernameInput, passwordInput);
+  
+      // this.setState({
+      //   username: usernameInput,
+      //   password: passwordInput
+      // })
+    }
 
-    // this.setState({
-    //   username: usernameInput,
-    //   password: passwordInput
-    // })
-  }
-
-  signUpBtnClicked = (e) => {
-    e.preventDefault();
-    // console.log('Sign Up');
-    var emailInput = document.querySelector('#create-email').value;
-    var usernameInput = document.querySelector('#create-username').value;
-    var passwordInput = document.querySelector('#create-password').value;
-    var firstNameInput = document.querySelector('#first-name').value;
-    var lastNameInput = document.querySelector('#last-name').value;
-
-    this.performSignUp(usernameInput, passwordInput, emailInput, firstNameInput, lastNameInput);
-    // this.setState({
-    //   email: emailInput,
-    //   username: usernameInput,
-    //   password: passwordInput,
-    //   firstName: firstNameInput,
-    //   lastName: lastNameInput
-    // })
-  }
+    signUpBtnClicked = (e) => {
+      sessionStorage.setItem('userInfo', JSON.stringify({
+        id: 1,
+        username: 'Bob',
+        password: 'bob',
+        firstName: 'bob',
+        lastName: 'rogers',
+        email: 'bob@gmail.com'
+      }));
+      e.preventDefault();
+      // console.log('Sign Up');
+      var emailInput = document.querySelector('#create-email').value;
+      var usernameInput = document.querySelector('#create-username').value;
+      var passwordInput = document.querySelector('#create-password').value;
+      var firstNameInput = document.querySelector('#first-name').value;
+      var lastNameInput = document.querySelector('#last-name').value;
+  
+      this.performSignUp(usernameInput, passwordInput, emailInput, firstNameInput, lastNameInput);
+      // this.setState({
+      //   email: emailInput,
+      //   username: usernameInput,
+      //   password: passwordInput,
+      //   firstName: firstNameInput,
+      //   lastName: lastNameInput
+      // })
+    }
 
   signUpOverlayButtonPressed = () => {
     const container = document.getElementById('container');

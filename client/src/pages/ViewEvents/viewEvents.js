@@ -11,43 +11,54 @@ class viewEvents extends Component {
 
   state = {
     eventInfo: [],
-    rsvpInfo: [],
+    mainDishInfo: [],
+    sideDishInfo: [],
+    dessertInfo: [],
+    rsvpInfo:[],
+    isLoaded: false
   }
 
   componentDidMount() {
     var query = window.location.pathname;
     axios.get(query).then((results) => {
       console.log(results.data);
-      this.setState({
+    this.setState({
         eventInfo: results.data.EventInfo,
-        rsvpInfo: results.data.RsvpInfo 
+        rsvpInfo: results.data.RsvpInfo, 
+        mainDishInfo: results.data.RsvpInfo.filter(m => m.rsvpTypeofDish === "Main"),
+        sideDishInfo: results.data.RsvpInfo.filter(m => m.rsvpTypeofDish === "Side"),
+        dessertInfo: results.data.RsvpInfo.filter(m => m.rsvpTypeofDish === "Dessert"),
+        isLoaded: true
       })
-    })
-  }
+    })}
 
 
   render() {
     return (
+      <>
       <div className="display-item-cards">
-        
-        {/* <EventNav /> */}
-        <Row>
-        <Col>
-        <EventNav eventInfo={this.state.eventInfo} rsvpInfo={this.state.rsvpInfo}/>
-        <br></br>
-        <MainDishCard dishesNeeded="3" description="Mains"/>
-        </Col>
-        <Col>
-        <br></br>
-        <SideDishCard dishesNeeded="6" description="Sides"/>
-        </Col>
-        <Col>
-        <br></br>
-        <DessertDishCard dishesNeeded="10" description="Desserts"/>
-        </Col>
-        </Row>
-        
-      </div>
+         {this.state.isLoaded === true ? 
+         <div>
+           <Row>
+         <Col>
+           <EventNav eventInfo={this.state.eventInfo} rsvpInfo={this.state.rsvpInfo}/>
+           <br></br>
+           <MainDishCard mainDishInfo={this.state.mainDishInfo} dishesNeeded={this.state.eventInfo[0].eventMainDishesNeeded} description="Mains" />
+         </Col>
+         <Col>
+           <br></br>
+           <SideDishCard sideDishInfo={this.state.sideDishInfo} dishesNeeded={this.state.eventInfo[0].eventSideDishesNeeded} description="Sides" />
+         </Col>
+         <Col>
+           <br></br>
+        <DessertDishCard dessertInfo={this.state.dessertInfo} dishesNeeded={this.state.eventInfo[0].eventDessertsNeeded} description="Desserts" />
+      </Col>
+      </Row></div>
+      :<div>Loading</div>
+         
+         }
+    </div>
+    </>
     )
   }
 }

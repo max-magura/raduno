@@ -11,12 +11,29 @@
    /* margin-right: 5px;    */
   background-color:#f95959;
   margin-right: 10px;
+  
  
 }
 
 .eventButtonInfo:hover {
   background-color: #f95959;
   opacity: 0.5;
+}
+
+.eventButtonInfo:active {
+  background-color: #f95959 !important;
+  
+}
+
+.eventButtonInfo:focus {
+  background-color: #f95959;
+  border-style: none;
+}
+
+.eventButtonInfo:visited {
+  background-color: #f95959;
+  border-style: none;
+ 
 }
 
 .eventButtonRSVP {
@@ -33,6 +50,27 @@
 .eventButtonRSVP:hover {
   opacity: 0.5;
   background-color: #f95959;
+}
+
+.eventButtonRSVP:hover {
+  background-color: #f95959;
+  opacity: 0.5;
+}
+
+.eventButtonRSVP:active {
+  background-color: #f95959 !important;
+  
+}
+
+.eventButtonRSVP:focus {
+  background-color: #f95959;
+  border-style: none;
+}
+
+.eventButtonRSVP:visited {
+  background-color: #f95959;
+  border-style: none;
+ 
 }
 
 .userName {

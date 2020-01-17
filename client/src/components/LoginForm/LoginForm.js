@@ -19,6 +19,7 @@ class LoginForm extends Component {
     }
     axios.post('/login', data).then(results => {
       localStorage.setItem('userInfo', JSON.stringify(results.data));
+      console.log(results);
     });
   }
 

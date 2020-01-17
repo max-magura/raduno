@@ -11,7 +11,7 @@ app.use(express.json());
 const bcrypt = require('bcrypt');
 const saltRounds = 8;
 const myPlaintextPassword = '';
-const someOtherPlaintextPassword = 'not_bacon';
+// const someOtherPlaintextPassword = 'not_bacon';
 var hashHolder = '';
 
 
@@ -23,59 +23,80 @@ app.get('/', (req, res) => {
 
 app.post('/login', (req, res) => {
   // console.log(req)
-  const username = req.body.username
-  const password = req.body.password
-  console.log(username,'*******');
+  const username = req.body.username;
+  const password = req.body.password;
+  console.log(username);
   models.Users.findOne({ where: {username: username} }).then(user => {
     // Check if user exists
     if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
-    } else {
-      const match = bcrypt.compare(password, user.dataValues.userPassword);
-    
-      if(match) {
-          console.log('yay');
-      }
+      console.log("Redirect Login");
+      res.send({
+        Success: false, 
+        Message: 'Username or Password not found'
+      });
       
+    } else {
+      bcrypt.compare(password, user.dataValues.userPassword, function (err, result){
+        if(result) {
+          // res.redirect('/home');
+          console.log("Login to Home");
+          res.send({
+            Success: true
+          });
+        } else{
+          // res.send('Incorrect password');
+          // res.redirect('/login');
+          console.log("Unsuccessful Login");
+          res.send({
+            Success: false, 
+            Message: 'Username or Password not found'
+          });
+        }
+      });
     }
-  console.log(user);
-    // async function checkUser(username, password) {
-      //... fetch user from a db etc.
-   
-   
-      //...
-  // }
-  })
+  });
 });
-
+  
 
 app.post('/signUp', (req, res) => {
   bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-    console.log(hash);
+    // console.log(hash);
     hashHolder = hash;
     setTimeout(hashPrint, 1000);
     
     function hashPrint() {
       bcrypt.compare(myPlaintextPassword, hashHolder, function(err, results) {
         if (err) throw err;
-        console.log(results);
+        // console.log(results);
       });
     }
-    
-    var flag = 0;
-    console.log(hashHolder,'***********');
-    models.Users.create({
-      username: req.body.username,
-      userPassword: hashHolder,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email
-    }).then(function(results) {
-      console.log(results.body);
-        res.send(results);
-      });
+    const username = req.body.username;
+    models.Users.findOne({ where: {username: username} }).then(user => {
+      if(!user){
+        models.Users.create({
+          username: req.body.username,
+          userPassword: hashHolder,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email
+        }).then(function(results) {
+          // console.log(results.body);
+            res.send({
+              Success: true,
+              Data: results
+            });
+        });
+        console.log("User Created Successfully");
+      } else {
+        res.send({
+          Success: false,
+          Message: "Username or Email Already Exist"
+        });
+        console.log("Username or Email Already Exist");
+      }
     });
   });
+});
   
 
   app.get('/myEvents/:id', (req, res) => {

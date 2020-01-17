@@ -34,15 +34,14 @@ class EventCard extends React.Component{
     <Card.Title className="text-center">Upcoming Events</Card.Title>
   
         <Card className="card" >
-      
-      <Card className="cardBody">This is an upcoming event. blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</Card>
-      
-      <Card className="cardBody">upcoming</Card>
-      <Card className="cardBody">upcoming</Card>
-      <Card className="cardBody">upcoming</Card>
-      <Card className="cardBody">upcoming</Card>
-      <Card className="cardBody">upcoming</Card>
-      <Card className="cardBody">upcoming</Card>
+    
+        {this.state.upcomingEvents.map((event, index) => {
+            return <Card key={index} className="cardBody">
+                Event Name: {event.eventName}
+                <br></br>
+                Days Away: {event.DaysAway}
+            </Card>
+        })}
 
         </Card>
     </Card>
@@ -54,12 +53,13 @@ class EventCard extends React.Component{
   
         <Card className="card">
             
-            <Card className="cardBody">This is a past  past past paaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaast event.</Card>
-            <Card className="cardBody">past</Card>
-            <Card className="cardBody">past</Card>
-            <Card className="cardBody">past</Card>
-            <Card className="cardBody">past</Card>
-            <Card className="cardBody">past</Card>
+            {this.state.passedEvents.map((event, index) => {
+             return <Card key={index} className="cardBody">
+                Event Name: {event.eventName}
+                <br></br>
+                Days Away: {event.DaysAway}  
+              </Card>
+            })}
         </Card>     
     </Card>
 </Col>

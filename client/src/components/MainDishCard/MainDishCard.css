@@ -37,7 +37,7 @@
   float: right;
   margin: 20px;
   font-size: 20px;
-  
+  color: #fff;
 }
 
 .description {
@@ -46,6 +46,7 @@
   left: 0;
   margin-left: 20px;
   font-size: 30px;
+  color: #fff;
 }
 
  .display-item-cards {
@@ -54,3 +55,8 @@
   grid-template-columns: auto auto auto;
 } 
 
+.reduceGap {
+  padding: 0;
+  width: 90%;
+  margin: auto;
+}

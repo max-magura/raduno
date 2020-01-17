@@ -43,3 +43,9 @@
   display: grid;
   grid-template-columns: auto auto auto;
 }
+
+.reduceGap {
+  padding: 0;
+  width: 90%;
+  margin: auto;
+}

@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS radunoDB;
 CREATE DATABASE radunoDB;
 USE radunoDB;
 
-CREATE TABLE Users (
+CREATE TABLE User (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(200) NOT NULL,
   userPassword VARCHAR(200) NOT NULL,
@@ -11,10 +11,10 @@ CREATE TABLE Users (
   email VARCHAR(255) NOT NULL
 );
 
-INSERT INTO Users (username, userPassword, firstName, lastName, email) values ('Agraves', 'austin', 'Austin', 'Graves', 'austingraves@email.com'),
-('Mmagura', 'max', 'Max', 'Magura', 'maxmagura@email.com'), 
-('Snelson', 'scott', 'Scott', 'Nelson', 'scottnelson@email.com'),
-('Jbuentello', 'joel', 'Joel', 'Buentello', 'joelbuentello@email.com');
+-- INSERT INTO User (username, userPassword, firstName, lastName, email) values ('Agraves', 'austin', 'Austin', 'Graves', 'austingraves@email.com'),
+-- ('Mmagura', 'max', 'Max', 'Magura', 'maxmagura@email.com'), 
+-- ('Snelson', 'scott', 'Scott', 'Nelson', 'scottnelson@email.com'),
+-- ('Jbuentello', 'joel', 'Joel', 'Buentello', 'joelbuentello@email.com');
 
 CREATE TABLE Events (
 	id INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,11 +34,11 @@ CREATE TABLE Events (
 	eventDessertsNeeded INT NOT NULL 
 );
 
-INSERT INTO Events (user_id, eventName, eventNumberInvited, eventDescription, eventLocationStreet, eventLocationCity, eventLocationState, eventLocationZipCode, eventDate, eventTime, eventMainDishesNeeded, eventSideDishesNeeded, eventDessertsNeeded) 
+INSERT INTO Events (user_id, eventName, eventHost, eventNumberInvited, eventDescription, eventLocationStreet, eventLocationCity, eventLocationState, eventLocationZipCode, eventDate, eventTime, eventMainDishesNeeded, eventSideDishesNeeded, eventDessertsNeeded) 
 values 
-(1, 'Event 1', 10,'This is for Event 1 description. blah blah blah blah blah blah blah blah blah blah blah blah','101 East Main Street', 'Gallatin', 'Tennessee', '37066', '2020/10/24', '7:00PM', 3, 6, 10),
-(2, 'Event 2', 7,'This is for Event 2 description. blah blah blah blah blah blah blah blah blah blah blah blah','101 East Main Street', 'Portland', 'Tennessee', '37148', '2020/09/24', '7:00PM', 7, 3, 8),
-(1, 'Event 6', 4,'This is for Event 6 description. blah blah blah blah blah blah blah blah blah blah blah blah','101 East Main Street', 'Portland', 'Tennessee', '37148', '2019/01/24', '7:00PM', 7, 3, 8);
+(1, 'Event 1', 'Austin Graves', 10,'This is for Event 1 description. blah blah blah blah blah blah blah blah blah blah blah blah','101 East Main Street', 'Gallatin', 'Tennessee', '37066', '2020/10/24', '7:00PM', 3, 6, 10),
+(2, 'Event 2', 'Max Magura',7,'This is for Event 2 description. blah blah blah blah blah blah blah blah blah blah blah blah','101 East Main Street', 'Portland', 'Tennessee', '37148', '2020/09/24', '7:00PM', 7, 3, 8),
+(1, 'Event 6', 'Scott Nelsen', 4,'This is for Event 6 description. blah blah blah blah blah blah blah blah blah blah blah blah','101 East Main Street', 'Portland', 'Tennessee', '37148', '2019/01/24', '7:00PM', 7, 3, 8);
 
 CREATE TABLE RSVP (
 	id INT AUTO_INCREMENT PRIMARY KEY,

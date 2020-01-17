@@ -24,7 +24,7 @@ class ItemCards extends Component {
         <Row>
           <Col>
           {this.state.mainDishInfo.map((dish, index) => (
-          <Card.Body key={index}>
+          <Card.Body className="reduceGap" key={index}>
             <ItemCardsItems foodName={dish.rsvpNameofDish} broughtBy={dish.rsvpName}/>
           </Card.Body>
         ))} 

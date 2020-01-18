@@ -12,6 +12,7 @@ app.use(express.json());
 const bcrypt = require('bcrypt');
 const saltRounds = 8;
 const myPlaintextPassword = '';
+const path = require ('path')
 // const someOtherPlaintextPassword = 'not_bacon';
 var hashHolder = '';
 

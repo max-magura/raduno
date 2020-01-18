@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Navbar,Modal, Button, Form, Card, ListGroup, Row, Col, ButtonGroup, Container, Nav, ButtonToolbar} from 'react-bootstrap';
+import {Navbar,Modal, Button, Form, Card, ListGroup, ButtonToolbar} from 'react-bootstrap';
 import "./EventNav.css";
 import './styleModal.css';
 import Axios from "axios";
@@ -18,6 +18,11 @@ class EventNav extends React.Component {
     eventInfo: this.props.eventInfo,
     rsvpInfo: this.props.rsvpInfo
   };
+
+  componentDidMount (){
+    console.log("MAXXXXXXXXX")
+    console.log(this.state.eventInfo)
+  }
 
   handleCloseRsvpForm  = event => {
    this.setState({showRsvpForm: false});
@@ -167,19 +172,19 @@ class EventNav extends React.Component {
     <Modal.Body style={{'max-height': 'calc(100vh - 210px)', 'overflowY': 'auto'}}>
       <Card>
         <Card.Body>
-          <Card.Title>{this.state.eventInfo.eventName}</Card.Title>
+          <Card.Title style={{'color': 'white'}}>{this.state.eventInfo[0].eventName}</Card.Title>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <b>Date:</b> {this.state.eventInfo.eventDate}
+                <b>Date:</b> {this.state.eventInfo[0].eventDate}
               </ListGroup.Item>
               <ListGroup.Item>
-                <b>Time:</b> {this.state.eventInfo.eventTime}
+                <b>Time:</b> {this.state.eventInfo[0].eventTime}
               </ListGroup.Item>
               <ListGroup.Item>
-                <b>Address:</b> <a href={`https://www.google.com/maps/place/${this.state.eventInfo.eventLocationStreet + " " + this.state.eventInfo.eventLocationCity + " " + this.state.eventInfo.eventLocationState + " " + this.state.eventInfo.eventLocationZipCode}`} target="_blank">{this.state.eventInfo.eventLocationStreet} {this.state.eventInfo.eventLocationCity},{this.state.eventInfo.eventLocationState}, {this.state.eventInfo.eventLocationZipCode}</a>
+                <b>Address:</b> <a href={`https://www.google.com/maps/place/${this.state.eventInfo[0].eventLocationStreet + " " + this.state.eventInfo[0].eventLocationCity + " " + this.state.eventInfo[0].eventLocationState + " " + this.state.eventInfo[0].eventLocationZipCode}`} target="_blank">{this.state.eventInfo[0].eventLocationStreet} {this.state.eventInfo[0].eventLocationCity}, {this.state.eventInfo[0].eventLocationState}, {this.state.eventInfo[0].eventLocationZipCode}</a>
               </ListGroup.Item>
               <ListGroup.Item>
-                <b>Description:</b> {this.state.eventInfo.eventDescription}
+                <b>Description:</b> {this.state.eventInfo[0].eventDescription}
               </ListGroup.Item>
             </ListGroup>
         </Card.Body>

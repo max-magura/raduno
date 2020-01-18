@@ -21,7 +21,7 @@ class EventNav extends React.Component {
 
   componentDidMount (){
     console.log("MAXXXXXXXXX")
-    console.log(this.state.eventInfo)
+    console.log(this.state.eventInfo[0])
   }
 
   handleCloseRsvpForm  = event => {
@@ -60,8 +60,8 @@ class EventNav extends React.Component {
   handleRsvpFormSubmit = event =>{
     event.preventDefault();
 
-    Axios.post(`/event/rsvp/${this.state.rsvpInfo[0].event_id}`, {
-      event_id: this.state.rsvpInfo[0].event_id,
+    Axios.post(`/event/rsvp/${this.state.eventInfo[0].id}`, {
+      event_id: this.state.eventInfo[0].id,
       rsvpName: this.state.rsvpName,
       rsvpNumberInParty: this.state.rsvpNumberInParty,
       rsvpTypeofDish: this.state.rsvpTypeofDish,

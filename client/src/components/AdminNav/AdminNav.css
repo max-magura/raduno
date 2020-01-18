@@ -13,6 +13,10 @@
   background-color: #f95959;
 }
 
+.logoutButton:focus {
+  background-color: #f95959;
+}
+
 .containerButton {
   position: absolute;
   right: 0px;

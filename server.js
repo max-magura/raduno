@@ -6,7 +6,7 @@ const db = require('./DB Help/connection');
 const models = require('./DB Help/models/Export');
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3001;
 const moment = require('moment');
 app.use(express.json());
 const bcrypt = require('bcrypt');

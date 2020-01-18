@@ -16,7 +16,7 @@ const path = require ('path')
 // const someOtherPlaintextPassword = 'not_bacon';
 var hashHolder = '';
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.get('/', (req, res) => {
   // console.log('/ route hit');

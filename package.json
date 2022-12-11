@@ -23,7 +23,7 @@
   "homepage": "https://github.com/max-magura/raduno#readme",
   "dependencies": {
     "bcrypt": "^3.0.7",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "install": "^0.13.0",
     "mysql2": "^2.1.0",
     "npm": "^6.13.4",
